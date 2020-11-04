@@ -1,6 +1,8 @@
+import json
 import os 
 import random
 
+import plotly.utils
 import plotly.express as px  
 import streamlit.components.v1 as components
 
@@ -17,7 +19,8 @@ else:
     _component_func = components.declare_component("streamlit_scatterplot_selection", path=build_dir)
 
 
-def st_scatterplot(spec, key="st_plotly"):
+def st_scatterplot(fig, key="st_plotly"):
+    spec = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     selected_points = _component_func(spec=spec, default=[], key=key)
     return selected_points
 
@@ -32,5 +35,5 @@ if not _RELEASE:
     st.subheader("Plotly interactive scatterplot")
     x, y = random_data()
     fig = px.scatter(x=x, y=y, title="My fancy plot")
-    v = st_scatterplot(fig.to_json())
+    v = st_scatterplot(fig)
     st.write(v)

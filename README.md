@@ -29,6 +29,7 @@ Both webpack dev server and Streamlit should run at the same time.
 
 ```shell script
 cd frontend
+set NODE_OPTIONS="--max-old-space-size=8192"
 npm run start
 ```
 
