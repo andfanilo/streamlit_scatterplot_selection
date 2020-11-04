@@ -3,7 +3,6 @@ import os
 import random
 
 import plotly.utils
-import plotly.express as px  
 import streamlit.components.v1 as components
 
 _RELEASE = False
@@ -26,6 +25,8 @@ def st_scatterplot(fig, key="st_plotly"):
 
 
 if not _RELEASE:
+    import random
+    import plotly.express as px
     import streamlit as st
 
     @st.cache

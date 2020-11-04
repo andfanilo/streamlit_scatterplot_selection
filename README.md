@@ -2,6 +2,23 @@
 
 Companion code for Dev.to [Streamlit components - Scatterplot with selection using Plotly.js](https://dev.to/andfanilo/streamlit-components-scatterplot-with-selection-using-plotly-js-3d7n)
 
+```python
+import random
+import plotly.express as px
+import streamlit as st
+from streamlit_scatterplot_selection import st_scatterplot
+
+@st.cache
+def random_data():
+	return random.sample(range(100), 50), random.sample(range(100), 50)
+
+st.subheader("Plotly interactive scatterplot")
+x, y = random_data()
+fig = px.scatter(x=x, y=y, title="My fancy plot")
+v = st_scatterplot(fig)
+st.write(v)
+```
+
 ## Development
 
 ### Install
